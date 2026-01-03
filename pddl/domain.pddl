@@ -1,4 +1,4 @@
-(define (domain slidetile)
+(define (domain npuzzle_domain)
   (:requirements :adl)
   (:types tile pos - object)
   (:predicates
