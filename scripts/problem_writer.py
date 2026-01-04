@@ -37,7 +37,7 @@ def generate_problem_pddl(
     pos_objs = [pos_name(r, c) for r in range(n) for c in range(n)]
     tile_objs = [f"t{k}" for k in range(1, n * n)]
 
-    # adjacency (bidirectional)
+    # adjacency (bidirezionale)
     adj_facts: List[str] = []
     for r in range(n):
         for c in range(n):
