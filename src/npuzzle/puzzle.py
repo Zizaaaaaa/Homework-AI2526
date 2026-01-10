@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable, List, Tuple
+from typing import List, Tuple
 import random
 
 
@@ -59,3 +60,35 @@ def scramble(n: int, k: int, seed: int = 0) -> Tuple[int, ...]:
         m, s = rng.choice(options)
         last = m
     return s
+
+
+def random_walk(n: int, state: Tuple[int, ...], steps: int, seed: int | None = None) -> Tuple[int, ...]:
+    """
+    Generate a guaranteed-solvable n-puzzle state by applying `steps`
+    random valid moves starting from `state` (usually the goal).
+    """
+    rng = random.Random(seed)
+    current = state
+
+    for _ in range(steps):
+        zero = current.index(0)
+        r, c = divmod(zero, n)
+
+        moves = []
+        if r > 0:
+            moves.append(-n)      # up
+        if r < n - 1:
+            moves.append(n)       # down
+        if c > 0:
+            moves.append(-1)      # left
+        if c < n - 1:
+            moves.append(1)       # right
+
+        delta = rng.choice(moves)
+        nz = zero + delta
+
+        lst = list(current)
+        lst[zero], lst[nz] = lst[nz], lst[zero]
+        current = tuple(lst)
+
+    return current
