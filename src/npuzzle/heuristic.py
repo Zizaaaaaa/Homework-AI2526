@@ -4,7 +4,7 @@ from typing import Tuple
 
 def manhattan(n: int, state: Tuple[int, ...], goal: Tuple[int, ...] | None = None) -> int:
     # goal default: 1..n*n-1,0
-    # precomputo la posizione target di ogni tile
+    # precompute the target position of every tile
     if goal is None:
         # goal standard
         goal_pos = {v: i for i, v in enumerate(list(range(1, n * n)) + [0])}

@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 
 from npuzzle.pddl_runner import run_fast_downward_via_wsl
-from problem_writer import generate_problem_pddl, parse_state  # usa le funzioni del file
+from problem_writer import generate_problem_pddl, parse_state  # use file functions
 
 
 def main() -> None:

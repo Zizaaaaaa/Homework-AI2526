@@ -53,7 +53,7 @@ def scramble(n: int, k: int, seed: int = 0) -> Tuple[int, ...]:
     rng = random.Random(seed)
     s = goal_state(n)
     last: Move | None = None
-    # per non annullare subito la mossa precedente (U <-> D, L <-> R)
+    # so as not to erase the previous move immediately (U <-> D, L <-> R)
     opp = {"U": "D", "D": "U", "L": "R", "R": "L"}
     for _ in range(k):
         options = [(m, s2) for (m, s2) in neighbors(n, s) if last is None or m != opp[last]]

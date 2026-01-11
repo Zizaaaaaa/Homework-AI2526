@@ -26,9 +26,9 @@ def main() -> None:
     domain_path = Path(args.domain)
     problem_path = Path(args.problem)
 
-    # Griglia esperimenti "sensata" (molte run)
-    # - Set A: curve robuste su n=3 e n=4 (k più grande)
-    # - Set B: n più grandi ma k piccolo (supporto n elevati)
+    # "sensible" experiment grid (a lot of run)
+    # - Set A: sturdy curves su n=3 and n=4 (k bigger)
+    # - Set B: n bigger but k smaller
     grid = []
     for k in [5, 10, 15, 20, 25, 30, 35, 40]:
         grid.append((3, k))
@@ -55,7 +55,7 @@ def main() -> None:
                 start = goal_state(n)
                 start = random_walk(n, start, k, seed=seed)
 
-                # ---- A* ----
+                # ----A*----
                 ares = astar(
                     n, start, goal_state(n),
                     limits=AStarLimits(time_limit_s=args.astar_timeout, max_memory_states=None),
@@ -68,7 +68,7 @@ def main() -> None:
                     "max_frontier": ares.max_frontier, "max_closed": ares.max_closed, "max_memory": ares.max_memory,
                 })
 
-                # Planning (Fast Downward)
+                # ----Planning (Fast Downward)----
                 from npuzzle.pddl_problem import generate_problem_pddl
 
                 problem_text = generate_problem_pddl(

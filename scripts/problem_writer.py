@@ -8,7 +8,7 @@ def pos_name(r: int, c: int) -> str:
 
 
 def parse_state(s: str) -> List[int]:
-    # accetta "1,2,3,4,5,6,7,0,8" oppure "1 2 3 4 5 6 7 0 8"
+    # accepts "1,2,3,4,5,6,7,0,8" or "1 2 3 4 5 6 7 0 8"
     s = s.replace(",", " ").strip()
     parts = [p for p in s.split() if p]
     return [int(x) for x in parts]
@@ -37,7 +37,7 @@ def generate_problem_pddl(
     pos_objs = [pos_name(r, c) for r in range(n) for c in range(n)]
     tile_objs = [f"t{k}" for k in range(1, n * n)]
 
-    # adjacency (bidirezionale)
+    # adjacency (bidirectional)
     adj_facts: List[str] = []
     for r in range(n):
         for c in range(n):
